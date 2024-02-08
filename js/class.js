@@ -1,16 +1,3 @@
-class Camera {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    update(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    applyTransform(ctx) {
-        ctx.translate(-this.x, -this.y);
-    }
-}
 class Sprite {
     constructor({
         position,
@@ -277,6 +264,7 @@ class Player extends Fighter {
         // }
 
         if (this.health <= 0) {
+            console.log("Umro si")
             this.alive = false
         }
         if (this.health > this.maxHealth) {

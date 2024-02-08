@@ -224,6 +224,8 @@ let act = true
 let act1 = true
 let act2 = true
 let score
+let timerId
+
 
 
 
@@ -315,7 +317,6 @@ function Animate() {
         }
     }
 }
-let timerId
 
 
 Animate()
