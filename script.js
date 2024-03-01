@@ -1,10 +1,18 @@
 const canvas = document.querySelector("canvas")
 const c = canvas.getContext("2d")
 
-canvas.width = 1024
-canvas.height = 576
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight - 5
+
+const decreaseSize = 1 / 2
 
 c.fillRect(0, 0, canvas.width, canvas.height)
+
+if ('ontouchstart' in window || navigator.maxTouchPoints) {
+    console.log("Touch is supported.");
+} else {
+    console.log("Touch is not supported.");
+}
 
 const keys = {
     ArrowLeft: {
@@ -57,7 +65,8 @@ const player = new Player({
             imageSrc: "./public/player/attack.png"
         }
     },
-    type: "player"
+    type: "player",
+    smallElements: decreaseSize
 })
 const backgroundImage = new Sprite({
     position: { x: 0, y: 0 },
@@ -88,6 +97,7 @@ const enemies = {
         damage: 2,
         XpDrop: 10,
         type: "ghost",
+        smallElements: decreaseSize
 
     },
     beast: {
@@ -111,7 +121,8 @@ const enemies = {
         speedOfRunning: 1,
         damage: 2,
         XpDrop: 20,
-        type: "beast"
+        type: "beast",
+        smallElements: decreaseSize
 
     },
     fireskull: {
@@ -135,7 +146,8 @@ const enemies = {
         speedOfRunning: 2,
         damage: 1,
         XpDrop: 5,
-        type: "fireskull"
+        type: "fireskull",
+        smallElements: decreaseSize
 
     },
     hound: {
@@ -159,7 +171,8 @@ const enemies = {
         speedOfRunning: 4,
         damage: .5,
         XpDrop: 5,
-        type: "hound"
+        type: "hound",
+        smallElements: decreaseSize
 
     },
     nightmare: {
@@ -183,7 +196,8 @@ const enemies = {
         speedOfRunning: 2,
         damage: 1,
         XpDrop: 50,
-        type: "nightmare"
+        type: "nightmare",
+        smallElements: decreaseSize
 
     },
     demon: {
@@ -207,7 +221,8 @@ const enemies = {
         speedOfRunning: 1,
         damage: 4,
         XpDrop: 100,
-        type: "demon"
+        type: "demon",
+        smallElements: decreaseSize
 
     },
 }
@@ -226,13 +241,10 @@ let act2 = true
 let score
 let timerId
 
-
-
-
 function Animate() {
     window.requestAnimationFrame(Animate)
-
-
+    c.fillStyle = "rgb(24,40,72)"
+    c.fillRect(0, 0, canvas.width, canvas.height)
     backgroundImage.update()
     player.velocity.x = 0
     player.velocity.y = 0

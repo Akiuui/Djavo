@@ -5,7 +5,8 @@ class Sprite {
         sprite = { framesMax: undefined, framesHold: undefined, imageSrc: undefined },
         isFlipped = false,
         imgOffset = { x: 0, y: 0 },
-        type
+        type,
+        smallElements = 1
     }) {
         //Basic properties
         this.position = position
@@ -22,6 +23,7 @@ class Sprite {
         this.image.src = sprite.imageSrc
         this.imgOffset = imgOffset
         this.type
+        this.smallElements = smallElements
         switch (type) {
             case "hound":
                 this.flipCords = -1
@@ -46,6 +48,7 @@ class Sprite {
                 break
         }
 
+
     }
     draw() {
         c.save()
@@ -64,8 +67,8 @@ class Sprite {
             this.isFlipped ?
                 -1 * this.position.x - this.image.width / this.framesMax + this.imgOffset.x * this.flipCords : this.position.x - this.imgOffset.x, //X
             this.position.y - this.imgOffset.y, //Y
-            (this.image.width / this.framesMax) * this.scale, //W
-            this.image.height * this.scale, //H
+            (this.image.width / this.framesMax) * this.scale * this.smallElements, //W
+            this.image.height * this.scale * this.smallElements, //H
         )
 
         c.restore()
@@ -111,14 +114,20 @@ class Fighter extends Sprite {
         health = 100,
         speedOfRunning = 10,
         damage = 5,
-        type
+        type,
+        smallElements
     }) {
-        super({ position, scale, sprite: animations.idle, isFlipped, imgOffset, type })
+        super({ position, scale, sprite: animations.idle, isFlipped, imgOffset, type, smallElements })
         //MAIN PROPERTIES
         this.health = health
         this.damage = 5
         this.velocity = velocity
         this.hitbox = hitbox
+        console.log(type, " Pre ", this.hitbox)
+        this.hitbox.w = this.hitbox.w * smallElements
+        this.hitbox.h = this.hitbox.h * smallElements
+        console.log("Posle ", this.hitbox)
+
         this.animations = animations
         this.attackBox = {
             position: {
@@ -177,7 +186,7 @@ class Fighter extends Sprite {
         c.strokeRect(this.position.x, this.position.y, this.hitbox.w, this.hitbox.h)
     }
     update(enemiesToHandle) {
-        // this.drawA()
+        this.drawA()
         this.draw()
         this.animateFrames()
         this.autoFlipSprite()
@@ -216,10 +225,10 @@ class Player extends Fighter {
         health = 100,
         speedOfRunning = 10,
         damage,
-        type
-
+        type,
+        smallElements
     }) {
-        super({ position, scale, animations, isFlipped, imgOffset, attackBox, health, velocity, hitbox, speedOfRunning, damage, type });
+        super({ position, scale, animations, isFlipped, imgOffset, attackBox, health, velocity, hitbox, speedOfRunning, damage, type, smallElements });
         this.alive = true
         this.coinsCollected = 0
         this.Xp = 0
@@ -347,9 +356,10 @@ class Enemy extends Fighter {
         speedOfRunning = 10,
         damage,
         XpDrop,
-        type
+        type,
+        smallElements
     }) {
-        super({ position, scale, animations, isFlipped, imgOffset, attackBox, health, velocity, hitbox, speedOfRunning, damage, type });
+        super({ position, scale, animations, isFlipped, imgOffset, attackBox, health, velocity, hitbox, speedOfRunning, damage, type, smallElements });
         this.isAttacking = true
         this.isDropped = false
         this.index = enemiesToUpdate.length
