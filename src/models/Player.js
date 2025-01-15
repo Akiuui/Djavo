@@ -1,8 +1,9 @@
 import Fighter from "./Fighter.js";
 import { detectCollision } from "../utils/utils.js";
-import { canvas } from "../script.js";
+import { canvas, c, player } from "../script.js";
 import { gameState } from "../script.js";
 
+import { playerSettings } from "../utils/entitySettings.js";
 
 function MovementOnX({ keys, player, left, right, speedOfRunning }) {
     if (keys[left].pressed) {
@@ -27,24 +28,24 @@ class Player extends Fighter {
     constructor({
         position = { x: 0, y: 0 },
         scale = 1,
-        // sprite = { framesMax: undefined, framesHold: undefined, imageSrc: undefined },
-        isFlipped = false,
-        velocity = { x: 0, y: 0 },
-        hitbox = { w: undefined, h: undefined },
-        animations = {},
         imgOffset = { x: 0, y: 0 },
-        attackBox = { offset: { x: undefined, y: undefined }, width: undefined, height: undefined },
-        health = 100,
-        speedOfRunning = 10,
+        hitbox = { w: undefined, h: undefined },
         damage,
+        attackBox = { offset: { x: undefined, y: undefined }, width: undefined, height: undefined },
+        animations = {},
         type,
         smallElements,
+        isFlipped = false,
+        velocity = { x: 0, y: 0 },
+        health = 100,
+        speedOfRunning = 10,
+        XpToLevelUp = 20
     }) {
         super({ position, scale, animations, isFlipped, imgOffset, attackBox, health, velocity, hitbox, speedOfRunning, damage, type, smallElements});
         this.alive = true
         this.coinsCollected = 0
         this.Xp = 0
-        this.XpToLevelUp = 20
+        this.XpToLevelUp = XpToLevelUp
         this.XpLevel = 1
         this.maxHealth = health
         this.EnemiesKilled = 0
@@ -92,9 +93,9 @@ class Player extends Fighter {
         this.velocity.y = 0
     
         
-        // if (this.isAttacking) {
-        //     c.strokeRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-        // }
+        if (this.isAttacking) {
+            c.strokeRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        }
 
         if (this.health <= 0) {
             this.alive = false
@@ -159,18 +160,19 @@ class Player extends Fighter {
         this.damage = this.damage + this.damage * (15 / 100)
     }
     restartSettings(){
-        this.health = 100
+        this.health = playerSettings.health
         this.coinsCollected = 0
         this.Xp = 0
-        this.XpToLevelUp = 20
+        this.XpToLevelUp = playerSettings.XpToLevelUp
         this.EnemiesKilled = 0
-        this.speedOfRunning = 10
-        this.damage = 50
+        this.speedOfRunning = playerSettings.speedOfRunning
+        this.damage = playerSettings.damage
+        this.position = /*playerSettings.position*/ {x: 300, y:400}
 
-        this.maxHealth = 100
+
+        this.maxHealth = playerSettings.health
         this.XpLevel = 1
         this.alive = true
-        this.position = { x: 490, y: 250 }
 
         document.getElementById("xpLevel").innerHTML = this.XpLevel
         document.getElementById("playerXp").style.width = this.Xp

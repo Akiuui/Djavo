@@ -1,4 +1,5 @@
 const decreaseSize = 1
+import { canvas } from "../script.js"
 
 export let coinSettings = {
     //Position is relative to the enemy
@@ -25,11 +26,13 @@ export let hearthSettings = {
     type: "heart",
 }
 export let backgroundSettings = {
+    // overrideWidth: canvas.width,
+    // overrideHeight: canvas.height,
     position: { x: 0, y: 0 },
     sprite: { framesMax: 1, framesHold: 1, imageSrc: "./public/map.png" }
 }
 export let playerSettings = {
-    position: { x: 490, y: 250 }, //Should be center based on the canvas width and height
+    // position: { x: canvas.width, y: canvas.height }, //Should be center based on the canvas width and height
     scale: 1.2,
     imgOffset: { x: 40, y: 10 },
     hitbox: { w: 30, h: 50 },
@@ -57,7 +60,11 @@ export let playerSettings = {
         }
     },
     type: "player",
-    smallElements: decreaseSize
+    smallElements: decreaseSize,
+    isFlipped: false,
+    health: 100,
+    speedOfRunning: 10,
+    XpToLevelUp: 20
 }
 export let enemySettings = {
     ghost: {
