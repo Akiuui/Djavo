@@ -1,7 +1,10 @@
 import Sprite from "./Sprite.js"
+import { gameState } from "../script.js"
+import { detectCollision } from "../utils/utils.js"
 
 class Collect extends Sprite {
     constructor({
+        player,
         position = { x: 0, y: 0 },
         scale = 1,
         sprite = { framesMax: undefined, framesHold: undefined, imageSrc: undefined },
@@ -12,6 +15,7 @@ class Collect extends Sprite {
         type
     }) {
         super({ position, scale, sprite, isFlipped, imgOffset })
+        this.player = player
         this.hitbox = hitbox
         this.attackBox = {
             position: {
@@ -24,25 +28,30 @@ class Collect extends Sprite {
         }
         this.collected = false
         this.type = type
-        this.index = collectsToUpdate.length
+        this.index = gameState.collectsToUpdate.length
 
     }
 
     update() {
         super.update()
         
-        if (!this.collected && rectCollison({ rect1: this, rect2: player })) {
-            if (this.type === "coin") {
-                player.coinsCollected++
-                document.getElementById("coins").innerHTML = player.coinsCollected
-                this.collected = true
-                collectsToUpdate[this.index] = undefined
+        if (this.collected == false && detectCollision({ rect1: this, rect2: this.player })) {
 
-            } else if (this.type === "heart" && player.health != 100) {
-                player.health += 20
+            if (this.type === "coin") {
+
+                this.player.coinsCollected++
+                document.getElementById("coins").innerHTML = this.player.coinsCollected
                 this.collected = true
-                collectsToUpdate[this.index] = undefined
+                gameState.collectsToUpdate[this.index] = undefined
+
+            } else if (this.type === "heart" && this.player.health != this.player.maxHealth) {
+
+                this.player.health += 20
+                this.collected = true
+                gameState.collectsToUpdate[this.index] = undefined
+                
             }
+
         }
 
 

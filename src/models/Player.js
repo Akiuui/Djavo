@@ -1,6 +1,8 @@
 import Fighter from "./Fighter.js";
-import { rectCollison } from "../utils/utils.js";
+import { detectCollision } from "../utils/utils.js";
 import { canvas } from "../script.js";
+import { gameState } from "../script.js";
+
 
 function MovementOnX({ keys, player, left, right, speedOfRunning }) {
     if (keys[left].pressed) {
@@ -58,7 +60,7 @@ class Player extends Fighter {
             if (e != undefined) {
 
                 if (
-                    rectCollison({ rect1: this, rect2: e })
+                    detectCollision({ rect1: this, rect2: e })
                     &&
                     this.isAttacking
                     &&
@@ -79,6 +81,17 @@ class Player extends Fighter {
         if (this.isAttacking && this.frameCurrent == 3)
             this.isAttacking = false
 
+        if (keys.Space.pressed) {
+            this.attack()
+            this.changeAnimationState("attack")
+        } else {
+            this.changeAnimationState("idle")
+        }
+
+        this.velocity.x = 0
+        this.velocity.y = 0
+    
+        
         // if (this.isAttacking) {
         //     c.strokeRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         // }
@@ -131,18 +144,36 @@ class Player extends Fighter {
         document.getElementById("playerXp").style.width = 0
         document.getElementById("levelUp").style.display = "flex"
 
-        clearInterval(timerId)
+        clearInterval(gameState.timerId)
 
-        isPaused = true
+        gameState.isPaused = true
     }
     increaseHealth() {
         this.maxHealth = this.maxHealth + this.maxHealth * (50 / 100)
+        this.health = this.maxHealth
     }
     increaseSpeed() {
         this.speedOfRunning = this.speedOfRunning + this.speedOfRunning * (15 / 100)
     }
     increaseDamage() {
         this.damage = this.damage + this.damage * (15 / 100)
+    }
+    restartSettings(){
+        this.health = 100
+        this.coinsCollected = 0
+        this.Xp = 0
+        this.XpToLevelUp = 20
+        this.EnemiesKilled = 0
+        this.speedOfRunning = 10
+        this.damage = 50
+
+        this.maxHealth = 100
+        this.XpLevel = 1
+        this.alive = true
+        this.position = { x: 490, y: 250 }
+
+        document.getElementById("xpLevel").innerHTML = this.XpLevel
+        document.getElementById("playerXp").style.width = this.Xp
     }
 }
 

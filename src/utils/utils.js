@@ -1,6 +1,6 @@
+import { gameState } from "../script.js";
 
-
-export function rectCollison({ rect1, rect2 }) {
+export function detectCollision({ rect1, rect2 }) {
     return (
         //X axis
         rect1.attackBox.position.x + rect1.attackBox.width >= rect2.position.x
@@ -12,22 +12,24 @@ export function rectCollison({ rect1, rect2 }) {
         rect1.attackBox.position.y <= rect2.position.y + rect2.hitbox.h
     )
 }
-export let seconds
-export function StartTimer(sec) {
-    seconds = sec
+
+export function StartTimerFrom(sec) {
+
+    gameState.seconds = sec
     let timerInterval = setInterval(function () {
-        seconds++;
-        document.getElementById("timer").innerHTML = seconds
+        gameState.seconds++;
+        document.getElementById("timer").innerHTML = gameState.seconds
         // timerElement.textContent = formatTime(seconds); // Update the timer display
     }, 1000);
     return timerInterval
+
 }
 
-
-export function randomIntFromInterval(min, max) { // min and max included 
+export function RandFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-export function getNumberOfElementsThatAreNotUndefined(array) {
+
+export function NumberOfDefined(array) {
     let cnt = 0
     array.forEach(e => {
         if (e !== undefined)
@@ -36,7 +38,7 @@ export function getNumberOfElementsThatAreNotUndefined(array) {
     return cnt
 }
 
-export function getRandomPositionOutsideCanvas(canvasWidth, canvasHeight) {
+export function RandPositionOutsideBox(width, height) {
     const buffer = 50; // Buffer to ensure enemies spawn outside the canvas
     let x
     let y
@@ -44,33 +46,23 @@ export function getRandomPositionOutsideCanvas(canvasWidth, canvasHeight) {
         if (Math.random() > 0.5) {
             //x je left
             x = -1 * buffer
-            y = randomIntFromInterval(-1 * buffer, canvasHeight + buffer)
+            y = RandFromInterval(-1 * buffer, height + buffer)
         } else {
             //x je desno
-            x = buffer + canvasWidth
-            y = randomIntFromInterval(-1 * buffer, canvasHeight + buffer)
+            x = buffer + width
+            y = RandFromInterval(-1 * buffer, height + buffer)
         }
     } else {
         if (Math.random() > 0.5) {
             //y je gore
-            x = randomIntFromInterval(-1 * buffer, canvasWidth + buffer)
+            x = RandFromInterval(-1 * buffer, width + buffer)
             y = -1 * buffer
         } else {
             //y je dole
-            x = randomIntFromInterval(-1 * buffer, canvasWidth + buffer)
-            y = canvasHeight + buffer
+            x = RandFromInterval(-1 * buffer, width + buffer)
+            y = height + buffer
         }
     }
 
     return { x, y };
-}
-function OpenWindow() {
-    document.getElementById("form").style.display = "flex"
-    document.getElementById("form1").style.display = "flex"
-
-}
-function ExitWindow() {
-    document.getElementById("leader1").style.display = "none"
-    document.getElementById("leader2").style.display = "none"
-
 }

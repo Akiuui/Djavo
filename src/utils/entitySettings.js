@@ -1,7 +1,7 @@
 const decreaseSize = 1
 
 export let coinSettings = {
-    position: { x: this.position.x, y: this.position.y },
+    //Position is relative to the enemy
     // scale: 0.7,
     sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/coin.png" },
     hitbox: { w: 10, h: 10 },
@@ -13,7 +13,7 @@ export let coinSettings = {
     type: "coin",
 }
 export let hearthSettings = {
-    position: { x: this.position.x, y: this.position.y },
+    //Position is relative to the enemy
     scale: 1.5,
     sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/heart.png" },
     hitbox: { w: 10, h: 10 },

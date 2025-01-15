@@ -1,6 +1,6 @@
 import Fighter from "./Fighter.js";
-import { rectCollison } from "../utils/utils.js";
-import { collectsToUpdate, enemiesToUpdate } from "../script.js";
+import { detectCollision } from "../utils/utils.js";
+import { gameState } from "../script.js";
 import { c } from "../script.js";
 import Collect from "./Collect.js";
 import { coinSettings, hearthSettings } from "../utils/entitySettings.js";
@@ -26,7 +26,7 @@ class Enemy extends Fighter {
         super({ position, scale, animations, isFlipped, imgOffset, attackBox, health, velocity, hitbox, speedOfRunning, damage, type, smallElements });
         this.isAttacking = true
         this.isDropped = false
-        this.index = enemiesToUpdate.length
+        this.index = gameState.enemiesToUpdate.length
         this.isArrayCreated = true
         this.XpDrop = XpDrop
         this.maxHealth = health
@@ -41,7 +41,7 @@ class Enemy extends Fighter {
         this.movement(player)
 
         //We check if arguments are touching
-        if (rectCollison({ rect1: this, rect2: player }))
+        if (detectCollision({ rect1: this, rect2: player }))
             player.health -= this.damage
         //If an enemy is damaged we show the health bar
         if (this.health < this.maxHealth && this.health > 0)
@@ -49,7 +49,7 @@ class Enemy extends Fighter {
 
         if (this.health <= 0) {
             //Death animation
-            enemiesToUpdate[this.index] = undefined
+            gameState.enemiesToUpdate[this.index] = undefined
             player.EnemiesKilled++
             this.dropCollect(player)
         }
@@ -91,12 +91,19 @@ class Enemy extends Fighter {
                 console.log("Enemy dropped nothing.");
             }
             else if (randomNumber < 80) {
-                const coin = new Collect({...coinSettings})
-                collectsToUpdate.push(coin)
+                const coin = new Collect({
+                    player,
+                    ...coinSettings,
+                    position: { x: this.position.x, y: this.position.y },})
+                gameState.collectsToUpdate.push(coin)
             }
             else {
-                const hearth = new Collect({...hearthSettings})
-                collectsToUpdate.push(hearth)
+                const hearth = new Collect({
+                    player,
+                    ...hearthSettings,
+                    position: { x: this.position.x, y: this.position.y },
+                })
+                gameState.collectsToUpdate.push(hearth)
             }
 
             this.isDropped = true
