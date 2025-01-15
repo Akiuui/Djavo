@@ -9,12 +9,16 @@ class Sprite {
         imgOffset = { x: 0, y: 0 },
         type,
         smallElements = 1,
+        overrideWidth = null,
+        overrideHeight = null,
     }) {
         //Basic properties
         this.position = position
         this.scale = scale
         this.sprite = sprite
         this.isFlipped = isFlipped
+        this.overrideHeight = overrideHeight
+        this.overrideWidth = overrideWidth
         //Animation properties
         this.framesMax = sprite.framesMax
         this.framesHold = sprite.framesHold
@@ -70,8 +74,10 @@ class Sprite {
             this.isFlipped ?
                 -1 * this.position.x - this.image.width / this.framesMax + this.imgOffset.x * this.flipCords : this.position.x - this.imgOffset.x, //X
             this.position.y - this.imgOffset.y, //Y
-            (this.image.width / this.framesMax) * this.scale * this.smallElements, //W
-            this.image.height * this.scale * this.smallElements, //H
+            this.overrideWidth ? this.overrideWidth :
+                                 (this.image.width / this.framesMax) * this.scale * this.smallElements, //W
+            this.overrideHeight ? this.overrideHeight : 
+                                  this.image.height * this.scale * this.smallElements, //H
         )
 
         c.restore()

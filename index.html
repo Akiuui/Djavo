@@ -15,10 +15,9 @@
         padding: 0;
     }
     body{
-        overflow: none;
+        overflow: hidden;
     }
 </style>
-
 <body>
     <audio id="backgroundMusic" src="./public/bgMusic.mp3" autoplay loop></audio>
 
@@ -75,7 +74,7 @@
         </div>
 
         <!-- DEATH SCREEN -->
-        <div id="death" style="background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
+        <div id="death" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
             <p style="color: rgb(240, 0, 0); font-size: 30px; font-weight: 800;">
                 You Died
             </p>
@@ -92,7 +91,7 @@
         </div>
 
         <!-- MENU -->
-        <div id="menu" style="background-color: rgba(0, 0, 0, 0.308); display: flex; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
+        <div id="menu" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: flex; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
             <p style="color: rgb(240, 0, 0); font-size: 30px; font-weight: 800;">
                 Welcome
             </p>
@@ -108,7 +107,7 @@
         </div>
 
         <!-- SAVE SCORE MENU -->
-        <div id="form" style="background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
+        <div id="form" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
             <div id="form1" style="background-color: white; display: none; justify-content:center; align-items: center;width: 300px; height: 30%; flex-direction: column; border-radius: 10px;">
                 <p style="font-weight: 700; font-size: 20px;">
                     Enter your nickname
@@ -121,7 +120,7 @@
         </div>
 
         <!-- LEVEL UP MENU -->
-        <div id="levelUp" style="background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0">
+        <div id="levelUp" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0">
             <div style="padding: 20px 0; display: flex; flex-direction: column; justify-content: space-between; align-items: center; border: 5px solid rgb(0, 0, 0); width: 300px; height: 400px; background-color: rgb(29, 13, 71);">
                 <div style="color: white;">
                     You Leveled Up!
@@ -154,19 +153,41 @@
         </div>
 
         <!-- LEADERBOARD -->
-        <div id="leader1" style="background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
+        <div id="leader1" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
             <div id="leader2" style="position: relative; padding: 10px; overflow: scroll; background-color: white; display: none; justify-content:center; align-items: center;width: 300px; height: 60%; flex-direction: column; border-radius: 10px;">
             </div>
         </div>
+        <canvas style="z-index: 0;"></canvas>
+
         <button onclick="menuActions.muteMusic()" id="muteButton" style="cursor: pointer;position: absolute;display: flex; justify-content: center; align-items: center; bottom: 15px; left: 7px;  width: 40px; height: 40px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#474747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>    
         </button>
 
+        <!-- TOUCHSCREEN CONTROLS -->
+        <div style="z-index: 1; color: red; position: fixed; top: 0px; right: 0px; display: flex; flex-direction: column; width:100%; height: 100%; ">
+            <div style="color: red; width: 100%; height: 100%;"></div>
 
-        <canvas></canvas>
+            <div id="touchControls" style="display: flex;width: 100%; height: 100%;">
+                <!-- hit -->
+                <div id="hitButton" style="width: 100%; height: 100%;">
+
+                </div>
+                <!-- joystick -->
+                <div id="joystick" style="width: 100%; height: 100%;">
+                    <div id="joystickContainer" style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.2); display: none;">
+                        <div class="joystickBase" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.5);">
+                        </div>
+                        <div class="joystickKnob" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.8);">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
-
 </body>
     <script type="module" src="./src/script.js"></script>
-    <script type="module" src="./src/utils/utils.js"></script>
 </html>
