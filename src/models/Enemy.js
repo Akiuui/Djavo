@@ -1,4 +1,9 @@
 import Fighter from "./Fighter.js";
+import { rectCollison } from "../utils/utils.js";
+import { collectsToUpdate, enemiesToUpdate } from "../script.js";
+import { c } from "../script.js";
+import Collect from "./Collect.js";
+import { coinSettings, hearthSettings } from "../utils/entitySettings.js";
 
 class Enemy extends Fighter {
     constructor({
@@ -29,17 +34,16 @@ class Enemy extends Fighter {
     update(player, collisionForEnemies) {
 
         let array
-
         if (this.isArrayCreated)
             array = this.createCollisionArray(collisionForEnemies)
 
         super.update(array)
         this.movement(player)
 
-        // this.attack()
+        //We check if arguments are touching
         if (rectCollison({ rect1: this, rect2: player }))
             player.health -= this.damage
-
+        //If an enemy is damaged we show the health bar
         if (this.health < this.maxHealth && this.health > 0)
             this.drawHealthBar()
 
@@ -47,9 +51,7 @@ class Enemy extends Fighter {
             //Death animation
             enemiesToUpdate[this.index] = undefined
             player.EnemiesKilled++
-            // enemiesToUpdate.splice(this.index, 1)
-            this.dropCollect()
-            // this.destroy()
+            this.dropCollect(player)
         }
     }
     createCollisionArray(collisionForEnemies) {
@@ -79,47 +81,24 @@ class Enemy extends Fighter {
         this.velocity.x = dx * this.speedOfRunning;
         this.velocity.y = dy * this.speedOfRunning;
     }
-    dropCollect() {
+    dropCollect(player) {
         if (!this.isDropped) {
+           
             let randomNumber = Math.floor(Math.random() * 100);
             player.Xp += this.XpDrop
 
             if (randomNumber < 50) {
                 console.log("Enemy dropped nothing.");
-
             }
             else if (randomNumber < 80) {
-                const coin = new Collect({
-                    position: { x: this.position.x, y: this.position.y },
-                    // scale: 0.7,
-                    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/coin.png" },
-                    hitbox: { w: 10, h: 10 },
-                    attackBox: {
-                        offset: { x: 0, y: 0 },
-                        width: 10,
-                        height: 10
-                    },
-                    type: "coin",
-                })
+                const coin = new Collect({...coinSettings})
                 collectsToUpdate.push(coin)
-
             }
             else {
-                const hearth = new Collect({
-                    position: { x: this.position.x, y: this.position.y },
-                    scale: 1.5,
-                    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/heart.png" },
-                    hitbox: { w: 10, h: 10 },
-                    attackBox: {
-                        offset: { x: 0, y: -20 },
-                        width: 18,
-                        height: 15
-                    },
-                    type: "heart",
-
-                })
+                const hearth = new Collect({...hearthSettings})
                 collectsToUpdate.push(hearth)
             }
+
             this.isDropped = true
         }
     }

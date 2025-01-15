@@ -1,5 +1,33 @@
 const decreaseSize = 1
 
+export let coinSettings = {
+    position: { x: this.position.x, y: this.position.y },
+    // scale: 0.7,
+    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/coin.png" },
+    hitbox: { w: 10, h: 10 },
+    attackBox: {
+        offset: { x: 0, y: 0 },
+        width: 10,
+        height: 10
+    },
+    type: "coin",
+}
+export let hearthSettings = {
+    position: { x: this.position.x, y: this.position.y },
+    scale: 1.5,
+    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/heart.png" },
+    hitbox: { w: 10, h: 10 },
+    attackBox: {
+        offset: { x: 0, y: -20 },
+        width: 18,
+        height: 15
+    },
+    type: "heart",
+}
+export let backgroundSettings = {
+    position: { x: 0, y: 0 },
+    sprite: { framesMax: 1, framesHold: 1, imageSrc: "./public/map.png" }
+}
 export let playerSettings = {
     position: { x: 490, y: 250 }, //Should be center based on the canvas width and height
     scale: 1.2,
@@ -31,7 +59,6 @@ export let playerSettings = {
     type: "player",
     smallElements: decreaseSize
 }
-
 export let enemySettings = {
     ghost: {
         scale: 1.2,

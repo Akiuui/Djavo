@@ -1,11 +1,14 @@
+import { StartTimer } from "../utils/utils.js"
+
 export let isPaused = true
+export let timerId
 export function StartGame() {
     document.getElementById("menu").style.display = "none"
     isPaused = false
 
-    console.log("isPaused: ", isPaused)
-    if (isPaused)
-        timerId = StartTimer(0)
+    // console.log("isPaused: ", isPaused)
+    // if (isPaused)
+    timerId = StartTimer(0)
 }
 
 export function showLeaderboard() {

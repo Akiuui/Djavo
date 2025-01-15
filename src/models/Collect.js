@@ -30,6 +30,7 @@ class Collect extends Sprite {
 
     update() {
         super.update()
+        
         if (!this.collected && rectCollison({ rect1: this, rect2: player })) {
             if (this.type === "coin") {
                 player.coinsCollected++

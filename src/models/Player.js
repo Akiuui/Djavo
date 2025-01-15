@@ -1,4 +1,6 @@
 import Fighter from "./Fighter.js";
+import { rectCollison } from "../utils/utils.js";
+import { canvas } from "../script.js";
 
 function MovementOnX({ keys, player, left, right, speedOfRunning }) {
     if (keys[left].pressed) {
@@ -45,12 +47,12 @@ class Player extends Fighter {
         this.maxHealth = health
         this.EnemiesKilled = 0
     }
-    update(keys, enemiesToHandle, isPaused) {
+    update(keys, enemiesToHandle) {
         this.movement(keys)
         this.drawHealthBar()
         this.drawXpBar()
-
         super.update(enemiesToHandle)
+        
         //Collision
         enemiesToHandle.forEach(e => {
             if (e != undefined) {
@@ -77,19 +79,16 @@ class Player extends Fighter {
         if (this.isAttacking && this.frameCurrent == 3)
             this.isAttacking = false
 
-
         // if (this.isAttacking) {
         //     c.strokeRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         // }
 
         if (this.health <= 0) {
-            console.log("Umro si")
             this.alive = false
         }
         if (this.health > this.maxHealth) {
             this.health = this.maxHealth
         }
-
         if (this.Xp >= this.XpToLevelUp) {
             this.levelUp()
         }
@@ -101,24 +100,23 @@ class Player extends Fighter {
         MovementOnX({ keys, player: this, left: "ArrowLeft", right: "ArrowRight", speedOfRunning: this.speedOfRunning })
         MovementOnY({ keys, player: this, up: "ArrowUp", down: "ArrowDown", speedOfRunning: this.speedOfRunning })
 
-        // if (player.position.x < 0) {
-        //     player.position.x = 0; // Prevent player from moving outside left boundary
-        // } else if (player.position.x + player.hitbox.w > canvas.width) {
-        //     player.position.x = canvas.width - player.hitbox.w; // Prevent player from moving outside right boundary
-        // }
-
-        // if (player.position.y < 0) {
-        //     player.position.y = 0; // Prevent player from moving outside top boundary
-        // } else if (player.position.y + player.hitbox.h > canvas.height) {
-        //     player.position.y = canvas.height - player.hitbox.h; // Prevent player from moving outside bottom boundary
-        // }
-
+        //Prevents the movement of the player outside of the bounds of the screen
+        if (this.position.x < 0) {
+            this.position.x = 0;
+        } else if (this.position.x + this.hitbox.w > canvas.width) {
+            this.position.x = canvas.width - this.hitbox.w;
+        }
+    
+        if (this.position.y < 0) {
+            this.position.y = 0;
+        } else if (this.position.y + this.hitbox.h > canvas.height) {
+            this.position.y = canvas.height - this.hitbox.h;
+        }
     }
     drawHealthBar() {
         document.getElementById("playerHealth").style.width = (this.health / this.maxHealth) * 100 + "%"
         document.getElementById("health").innerHTML = this.health
         document.getElementById("maxHealth").innerHTML = this.maxHealth
-
     }
     drawXpBar() {
         document.getElementById("playerXp").style.width = (this.Xp / this.XpToLevelUp) * 100 + '%'
@@ -136,7 +134,6 @@ class Player extends Fighter {
         clearInterval(timerId)
 
         isPaused = true
-
     }
     increaseHealth() {
         this.maxHealth = this.maxHealth + this.maxHealth * (50 / 100)
