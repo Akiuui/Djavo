@@ -43,13 +43,16 @@ class Collect extends Sprite {
                 document.getElementById("coins").innerHTML = this.player.coinsCollected
                 this.collected = true
                 // gameState.collectsToUpdate[this.index] = undefined
+                gameState.collectsToUpdate = gameState.collectsToUpdate.filter(e => !e.collected)
 
             } else if (this.type === "heart" && this.player.health != this.player.maxHealth) {
 
                 this.player.health += 20
                 this.collected = true
                 // gameState.collectsToUpdate[this.index] = undefined
+                gameState.collectsToUpdate = gameState.collectsToUpdate.filter(e => !e.collected)
                 
+
             }
 
         }

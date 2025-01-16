@@ -52,6 +52,8 @@ class Enemy extends Fighter {
         if (this.health <= 0) {
             //Death animation
             this.isAlive = false
+            gameState.enemiesToUpdate = gameState.enemiesToUpdate.filter(e => e.isAlive)
+
             // gameState.enemiesToUpdate[this.index] = undefined
             player.EnemiesKilled++
             this.dropCollect(player)
