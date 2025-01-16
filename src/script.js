@@ -75,12 +75,16 @@ function Animate() {
 
     //We render the enteties
     player.update(keys, gameState.enemiesToUpdate)
-    // gameState.enemiesToUpdate.forEach(e => {
-    //     if (e != undefined)
-    //         e.update(player, gameState.enemiesToUpdate)
-    // })
+    //We clear used Objects
+    gameState.enemiesToUpdate = gameState.enemiesToUpdate.filter(e => e.isAlive)
+    gameState.collectsToUpdate = gameState.collectsToUpdate.filter(e => !e.collected)
+
+    gameState.enemiesToUpdate.forEach(e => {
+        // if (e != undefined)
+            e.update(player, gameState.enemiesToUpdate)
+    })
     gameState.collectsToUpdate.forEach(e => {
-        if (e != undefined)
+        // if (e != undefined)
             e.update()
     })
     //Function that controlles the game

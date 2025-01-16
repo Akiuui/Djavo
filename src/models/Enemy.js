@@ -31,6 +31,7 @@ class Enemy extends Fighter {
         this.isArrayCreated = true
         this.XpDrop = XpDrop
         this.maxHealth = health
+        this.isAlive = true
     }
     update(player, collisionForEnemies) {
 
@@ -50,7 +51,8 @@ class Enemy extends Fighter {
 
         if (this.health <= 0) {
             //Death animation
-            gameState.enemiesToUpdate[this.index] = undefined
+            this.isAlive = false
+            // gameState.enemiesToUpdate[this.index] = undefined
             player.EnemiesKilled++
             this.dropCollect(player)
         }

@@ -56,7 +56,7 @@ class Player extends Fighter {
         this.drawXpBar()
         super.update(enemiesToHandle)
         
-        //Collision
+        //Hit back
         enemiesToHandle.forEach(e => {
             if (e != undefined) {
 

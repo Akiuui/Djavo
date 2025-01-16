@@ -200,7 +200,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 6,
                 framesHold: 6,
-                imageSrc: "./public/sprites/senemies/demon/idle.png"
+                imageSrc: "./public/sprites/enemies/demon/idle.png"
             },
         },
         imgOffset: { x: 55, y: 35 },
