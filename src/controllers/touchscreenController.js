@@ -1,8 +1,15 @@
 import { keys } from "./keyboardController.js";
 
 function touchScreenController(){
-    //HIT BUTTON
+
     let hitButton=document.querySelector("#hitButton")
+    let joystick = document.getElementById('joystick');
+
+    hitButton.style.display = "flex"
+    joystick.style.display = "flex"
+
+
+    //HIT BUTTON
     hitButton.addEventListener('touchstart', (e) => {
         keys.Space.pressed = true
     })
@@ -11,7 +18,6 @@ function touchScreenController(){
     })
 
     //JOYSTICK
-    const joystick = document.getElementById('joystick');
     const joystickContainer = document.getElementById('joystickContainer');
     const joystickBase = joystickContainer.querySelector('.joystickBase');
     const joystickKnob = joystickContainer.querySelector('.joystickKnob');

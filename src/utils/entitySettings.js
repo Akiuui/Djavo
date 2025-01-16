@@ -4,7 +4,7 @@ import { canvas } from "../script.js"
 export let coinSettings = {
     //Position is relative to the enemy
     // scale: 0.7,
-    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/coin.png" },
+    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/sprites/collectibles/coin.png" },
     hitbox: { w: 10, h: 10 },
     attackBox: {
         offset: { x: 0, y: 0 },
@@ -16,7 +16,7 @@ export let coinSettings = {
 export let hearthSettings = {
     //Position is relative to the enemy
     scale: 1.5,
-    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/collectibles/heart.png" },
+    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/sprites/collectibles/heart.png" },
     hitbox: { w: 10, h: 10 },
     attackBox: {
         offset: { x: 0, y: -20 },
@@ -46,24 +46,24 @@ export let playerSettings = {
         idle: {
             framesMax: 4,
             framesHold: 7,
-            imageSrc: "./public/player/idle.png"
+            imageSrc: "./public/sprites/player/idle.png"
         },
         run: {
             framesMax: 12,
             framesHold: 6,
-            imageSrc: "./public/player/run.png"
+            imageSrc: "./public/sprites/player/run.png"
         },
         attack: {
             framesMax: 4,
             framesHold: 7,
-            imageSrc: "./public/player/attack.png"
+            imageSrc: "./public/sprites/player/attack.png"
         }
     },
     type: "player",
     smallElements: decreaseSize,
     isFlipped: false,
     health: 100,
-    speedOfRunning: 10,
+    speedOfRunning: 7,
     XpToLevelUp: 20
 }
 export let enemySettings = {
@@ -75,7 +75,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 7,
                 framesHold: 4,
-                imageSrc: "./public/enemies/ghost/idle.png"
+                imageSrc: "./public/sprites/enemies/ghost/idle.png"
             },
         },
         imgOffset: { x: 25, y: 28 },
@@ -100,7 +100,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 6,
                 framesHold: 6,
-                imageSrc: "./public/enemies/beast/idle.png"
+                imageSrc: "./public/sprites/enemies/beast/idle.png"
             },
         },
         imgOffset: { x: 5, y: 20 },
@@ -125,7 +125,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 8,
                 framesHold: 6,
-                imageSrc: "./public/enemies/fireskull/idle.png"
+                imageSrc: "./public/sprites/enemies/fireskull/idle.png"
             },
         },
         imgOffset: { x: 5, y: 15 },
@@ -150,7 +150,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 12,
                 framesHold: 6,
-                imageSrc: "./public/enemies/hound/idle.png"
+                imageSrc: "./public/sprites/enemies/hound/idle.png"
             },
         },
         imgOffset: { x: 15, y: 8 },
@@ -175,7 +175,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 4,
                 framesHold: 6,
-                imageSrc: "./public/enemies/nightmare/idle.png"
+                imageSrc: "./public/sprites/enemies/nightmare/idle.png"
             },
         },
         imgOffset: { x: 50, y: 25 },
@@ -200,7 +200,7 @@ export let enemySettings = {
             idle: {
                 framesMax: 6,
                 framesHold: 6,
-                imageSrc: "./public/enemies/demon/idle.png"
+                imageSrc: "./public/sprites/senemies/demon/idle.png"
             },
         },
         imgOffset: { x: 55, y: 35 },

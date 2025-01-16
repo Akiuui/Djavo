@@ -57,7 +57,9 @@ export const gameState = {
 
 function Animate() {
     window.requestAnimationFrame(Animate) //Creates a recursive loop
+    backgroundImage.update()
     
+
     if(gameState.isPaused){
         return
     }
@@ -72,12 +74,11 @@ function Animate() {
     }
 
     //We render the enteties
-    backgroundImage.update()
     player.update(keys, gameState.enemiesToUpdate)
-    gameState.enemiesToUpdate.forEach(e => {
-        if (e != undefined)
-            e.update(player, gameState.enemiesToUpdate)
-    })
+    // gameState.enemiesToUpdate.forEach(e => {
+    //     if (e != undefined)
+    //         e.update(player, gameState.enemiesToUpdate)
+    // })
     gameState.collectsToUpdate.forEach(e => {
         if (e != undefined)
             e.update()
@@ -90,7 +91,7 @@ function Animate() {
 Animate()
 
 //Detecting if touch screen is supported
-if ('ontouchstart' in window || navigator.maxTouchPoints) {
+if (('ontouchstart' in window || navigator.maxTouchPoints)) {
     touchScreenController()
 } else {
     console.log("Touch is not supported.");

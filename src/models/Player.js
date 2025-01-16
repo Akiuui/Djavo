@@ -93,9 +93,9 @@ class Player extends Fighter {
         this.velocity.y = 0
     
         
-        if (this.isAttacking) {
-            c.strokeRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-        }
+        // if (this.isAttacking) {
+        //     c.strokeRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        // }
 
         if (this.health <= 0) {
             this.alive = false
