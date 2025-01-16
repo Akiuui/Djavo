@@ -54,8 +54,24 @@ export const gameState = {
     namesOfEnemies: ["hound", "fireskull"],
     maxEnemiesOnScreen: 20
 }
+let frameCount = 0;
+let fps = 0;
+let lastTime = 0;
 
-function Animate() {
+
+function Animate(timestamp) {
+    // Calculate frames per second
+    frameCount++;
+
+    if (timestamp - lastTime >= 1000) {
+        fps = frameCount;
+        frameCount = 0;
+        lastTime = timestamp;
+
+        // Display the FPS in the HTML element
+        document.getElementById('fpsCounter').innerText = `FPS: ${fps}`;
+    }
+
     window.requestAnimationFrame(Animate) //Creates a recursive loop
     backgroundImage.update()
     
@@ -76,8 +92,8 @@ function Animate() {
     //We render the enteties
     player.update(keys, gameState.enemiesToUpdate)
     //We clear used Objects
-    gameState.enemiesToUpdate = gameState.enemiesToUpdate.filter(e => e.isAlive)
-    gameState.collectsToUpdate = gameState.collectsToUpdate.filter(e => !e.collected)
+    // gameState.enemiesToUpdate = gameState.enemiesToUpdate.filter(e => e.isAlive)
+    // gameState.collectsToUpdate = gameState.collectsToUpdate.filter(e => !e.collected)
 
     gameState.enemiesToUpdate.forEach(e => {
         // if (e != undefined)
