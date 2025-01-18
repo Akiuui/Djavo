@@ -85,10 +85,8 @@ class Sprite {
     update() {
         this.draw()
 
-        if (this.framesMax == 1)
-            return
-
-        this.animateFrames()
+        if (this.framesMax != 1)
+            this.animateFrames()
     }
     animateFrames() {
         this.framesElapsed++

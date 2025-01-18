@@ -80,7 +80,7 @@
                 You Died
             </p>
             <p id="score" style="color: white; font-size: 25px;">Your Score:</p>
-            <button onclick="menuActions.RestartGame()" style="cursor: pointer;display: flex; justify-content: center; align-items: center; padding: 10px; border-radius: 10px;">
+            <button onclick="menuActions.RestartGame()" style="margin-top: 30px; cursor: pointer;display: flex; justify-content: center; align-items: center; padding: 10px; border-radius: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#474747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/></svg>
             </button>
             <button onclick="menuActions.OpenSaveScore()" style="cursor: pointer;margin-top: 30px; font-weight: 700; font-size: 20px; display: flex; justify-content: center; align-items: center; padding: 10px; border-radius: 10px;">
@@ -93,7 +93,7 @@
 
         <!-- MENU -->
         <div id="menu" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: flex; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
-            <p style="color: rgb(240, 0, 0); font-size: 30px; font-weight: 800;">
+            <p class="wel" style="color: rgb(240, 0, 0); font-size: 30px; font-weight: 800;">
                 Welcome
             </p>
             <p style="color: white;">
@@ -156,9 +156,15 @@
         <!-- LEADERBOARD -->
         <div id="leader1" style="z-index: 2; background-color: rgba(0, 0, 0, 0.308); display: none; position: absolute; justify-content: center; align-items: center; top: 0; bottom: 0; left: 0; right: 0; flex-direction: column;">
             <div id="leader2" style="position: relative; padding: 10px; overflow: scroll; background-color: white; display: none; justify-content:center; align-items: center;width: 300px; height: 60%; flex-direction: column; border-radius: 10px;">
+                <div onclick="menuActions.ExitSaveScore()" style="cursor: pointer;position: absolute; top: 5px; right: 5px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </div>
+                <h1>LeaderBoard</h1>
+                <table style="width: 100%">
+                    <tr><th>NickName</th><th>Value</th></tr>
+                </table>    
             </div>
         </div>
-        <canvas style="z-index: 0;"></canvas>
 
         <button onclick="menuActions.muteMusic()" id="muteButton" style="cursor: pointer;position: absolute;display: flex; justify-content: center; align-items: center; bottom: 15px; left: 7px;  width: 40px; height: 40px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#474747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>    
@@ -170,11 +176,16 @@
 
             <div id="touchControls" style="display: flex;width: 100%; height: 100%;">
                 <!-- hit -->
-                <div id="hitButton" style="padding-top: 60px; display: none; opacity: .5; width: 100%; height: 100%; justify-content: center; align-items: center;">
-                     <img id="attackBtnImg" width="110px" height="110px" src="./public/attackButton.svg" alt="">
+                <div id="hitButtonContainer" style="padding-top: 60px; display: flex; opacity: .7; width: 100%; height: 100%; justify-content: center; align-items: center;">
+                     <img id="hitButton"  style="position: absolute; left: 40px; bottom: 100px; display: none;" id="attackBtnImg" width="110px" height="110px" src="./public/attackButton.svg" alt="">
+                </div>
+                <!-- auto hit -->
+                <div class="autoAttack" style="position: absolute; left: 10px; bottom: 80px; opacity: .5; width: 40px; height: 40px; border: 5px solid #545454; border-radius: 70%;">
+
+
                 </div>
                 <!-- joystick -->
-                <div id="joystick" style="opacity: .5; display: none; width: 100%; height: 100%;">
+                <div id="joystick" style="opacity: .5; display: flex; width: 100%; height: 100%;">
                     <div id="joystickContainer" style="position: absolute; width: 100px; height: 100px; border-radius: 50%; background-color: #545454; display: none;">
                         <div class="joystickBase" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.5);">
                         </div>
@@ -186,6 +197,8 @@
         </div>
 
         <div id="fpsCounter" style="position: fixed; top: 10px; right: 10px; font-size: 20px; color: white; background-color: black; padding: 5px;"></div>
+
+        <canvas style="z-index: 0;"></canvas>
 
     </div>
 </body>

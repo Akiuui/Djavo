@@ -1,19 +1,37 @@
 import { keys } from "./keyboardController.js";
 
 function touchScreenController(){
+  let hitButton=document.querySelector("#hitButton")
 
-    let hitButton=document.querySelector("#hitButton")
-    let joystick = document.getElementById('joystick');
+    //AUTO ATTACK TOGGLE
+    let autoAttack = document.querySelector(".autoAttack")
+    let autoAttackToggled = false
+    autoAttack.addEventListener('touchstart', (e) => {
+      if(!autoAttackToggled){
+        autoAttack.style.backgroundColor = "#FFD700"
+        autoAttack.style.opacity = ".8"
+        hitButton.style.opacity = ".4"
+        autoAttackToggled = true
+        keys.Space.pressed = true
+      }else{
+        autoAttack.style.backgroundColor = "transparent"
+        autoAttack.style.opacity = ".5"
+        hitButton.style.opacity = ".7"
+        autoAttackToggled = false
+        keys.Space.pressed = false
 
-    hitButton.style.display = "flex"
-    joystick.style.display = "flex"
+      }
 
+    })
 
     //HIT BUTTON
+    hitButton.style.display = "flex"
     hitButton.addEventListener('touchstart', (e) => {
-        keys.Space.pressed = true
+      if(!autoAttackToggled)
+          keys.Space.pressed = true
     })
     hitButton.addEventListener('touchend', (e) => {
+      if(!autoAttackToggled)  
         keys.Space.pressed = false
     })
 

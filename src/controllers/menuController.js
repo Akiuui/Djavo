@@ -35,7 +35,7 @@ export function ShowLeaderboard() {
     document.getElementById("leader1").style.display = "flex"
     document.getElementById("leader2").style.display = "flex"
 
-    let tableHtml = '<div onclick="ExitSaveScore()" style="cursor: pointer;position: absolute; top: 5px; right: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><h1>LeaderBoard</h1><table style="width: 100%"><tr><th>NickName</th><th>Value</th></tr>';
+    // let tableHtml = '<div onclick="ExitSaveScore()" style="cursor: pointer;position: absolute; top: 5px; right: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><h1>LeaderBoard</h1><table style="width: 100%"><tr><th>NickName</th><th>Value</th></tr>';
     let array = []
 
     for (let i = 0; i < localStorage.length; i++) {
@@ -51,7 +51,7 @@ export function ShowLeaderboard() {
     //         tableHtml += `<tr><td style="border-right: 1px solid black; margin-right: 10px; padding-right: 10px; display: flex; justify-content: center; align-items: center">${e.key}</td><td ">${e.value}</td></tr>`;
     //     }
     // })
-    tableHtml += "</table>";
+    // tableHtml += "</table>";
 
     document.getElementById("leader2").innerHTML = tableHtml;
 

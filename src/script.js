@@ -69,7 +69,7 @@ function Animate(timestamp) {
         lastTime = timestamp;
 
         // Display the FPS in the HTML element
-        document.getElementById('fpsCounter').innerText = `FPS: ${fps}`;
+        // document.getElementById('fpsCounter').innerText = `FPS: ${fps}`;
     }
 
     window.requestAnimationFrame(Animate) //Creates a recursive loop
@@ -95,10 +95,10 @@ function Animate(timestamp) {
     // gameState.enemiesToUpdate = gameState.enemiesToUpdate.filter(e => e.isAlive)
     // gameState.collectsToUpdate = gameState.collectsToUpdate.filter(e => !e.collected)
 
-    gameState.enemiesToUpdate.forEach(e => {
-        // if (e != undefined)
-            e.update(player, gameState.enemiesToUpdate)
-    })
+    // gameState.enemiesToUpdate.forEach(e => {
+    //     // if (e != undefined)
+    //         e.update(player, gameState.enemiesToUpdate)
+    // })
     gameState.collectsToUpdate.forEach(e => {
         // if (e != undefined)
             e.update()
