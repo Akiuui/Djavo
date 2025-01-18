@@ -160,7 +160,7 @@ export let enemySettings = {
             height: 40
         },
         health: 50,
-        speedOfRunning: 4,
+        speedOfRunning: 3,
         damage: .5,
         XpDrop: 5,
         type: "hound",

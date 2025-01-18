@@ -34,6 +34,7 @@ canvas.height = window.innerHeight+5
 c.fillStyle = "rgb(24,40,72)"
 c.fillRect(0, 0, canvas.width, canvas.height)
 
+//Defineding my player and background image
 export const player = new Player({
     ...playerSettings,
     position: {x: canvas.width/2, y: canvas.height/2}
@@ -62,7 +63,6 @@ let lastTime = 0;
 function Animate(timestamp) {
     // Calculate frames per second
     frameCount++;
-
     if (timestamp - lastTime >= 1000) {
         fps = frameCount;
         frameCount = 0;
@@ -75,6 +75,7 @@ function Animate(timestamp) {
     window.requestAnimationFrame(Animate) //Creates a recursive loop
     backgroundImage.update()
     
+
 
     if(gameState.isPaused){
         return

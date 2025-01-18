@@ -24,6 +24,10 @@ function touchScreenController(){
 
     })
 
+    document.addEventListener('dblclick', function (e) {
+      e.preventDefault(); // Prevent double-tap zoom
+    });
+
     //HIT BUTTON
     hitButton.style.display = "flex"
     hitButton.addEventListener('touchstart', (e) => {
@@ -89,9 +93,6 @@ function touchScreenController(){
         joystickKnob.style.left = (deltaX + joystickContainer.offsetWidth/2 ) + 'px';
         joystickKnob.style.top = (deltaY + joystickContainer.offsetHeight/2)+ 'px';
       
-        console.log("x: " , deltaX)
-        // console.log("y: " , deltaY)
-
         if (deltaX < -15) { 
             keys.ArrowLeft.pressed = true; 
             keys.ArrowRight.pressed = false;

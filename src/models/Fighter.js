@@ -1,4 +1,5 @@
 import Sprite from "./Sprite.js"
+import { c } from "../script.js"
 
 class Fighter extends Sprite {
     constructor({
@@ -23,8 +24,8 @@ class Fighter extends Sprite {
         this.damage = 5
         this.velocity = velocity
         this.hitbox = hitbox
-        this.hitbox.w = this.hitbox.w * smallElements
-        this.hitbox.h = this.hitbox.h * smallElements
+        this.hitbox.w = hitbox.w
+        this.hitbox.h = hitbox.h
 
         this.animations = animations
         this.attackBox = {
@@ -38,7 +39,6 @@ class Fighter extends Sprite {
         }
         this.speedOfRunning = speedOfRunning
         //FUNCTION PROPERITES
-        // this.lastKeyPressed
         this.isAttacking
         this.damage = damage
 
@@ -79,12 +79,12 @@ class Fighter extends Sprite {
         })
 
     }
-    // drawA() {
-    //     this.c.strokeStyle = "white"
-    //     this.c.strokeRect(this.position.x, this.position.y, this.hitbox.w, this.hitbox.h)
-    // }
+    drawA() {
+        c.strokeStyle = "white"
+        c.strokeRect(this.position.x, this.position.y, this.hitbox.w, this.hitbox.h)
+    }
     update(enemiesToHandle) {
-        // this.drawA()
+        this.drawA()
         this.draw()
         this.animateFrames()
         this.autoFlipSprite()
