@@ -89,10 +89,13 @@ function touchScreenController(){
         joystickKnob.style.left = (deltaX + joystickContainer.offsetWidth/2 ) + 'px';
         joystickKnob.style.top = (deltaY + joystickContainer.offsetHeight/2)+ 'px';
       
-        if (deltaX < 0) { 
+        console.log("x: " , deltaX)
+        // console.log("y: " , deltaY)
+
+        if (deltaX < -15) { 
             keys.ArrowLeft.pressed = true; 
             keys.ArrowRight.pressed = false;
-          } else if (deltaX > 0) {
+          } else if (deltaX > 15) {
             keys.ArrowRight.pressed = true;
             keys.ArrowLeft.pressed = false;
           } else {
