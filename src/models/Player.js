@@ -1,7 +1,7 @@
 import Fighter from "./Fighter.js";
 import { detectCollision } from "../utils/utils.js";
-import { canvas, c, player } from "../script.js";
-import { gameState } from "../script.js";
+import { canvas, c, player } from "../main.js";
+import { gameState } from "../main.js";
 
 import { playerSettings } from "../utils/entitySettings.js";
 

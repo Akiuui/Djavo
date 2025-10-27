@@ -1,5 +1,5 @@
 import Sprite from "./Sprite.js"
-import { c } from "../script.js"
+import { c } from "../main.js"
 
 class Fighter extends Sprite {
     constructor({

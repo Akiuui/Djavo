@@ -1,5 +1,5 @@
 import Sprite from "./Sprite.js"
-import { gameState } from "../script.js"
+import { gameState } from "../main.js"
 import { detectCollision } from "../utils/utils.js"
 
 class Collect extends Sprite {

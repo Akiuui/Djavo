@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="A Vampire Survivors inspired game made with JS and Canvas">
     <title>Djavo</title>
-    <link rel="icon" href="./public/favicon.png"> 
+    <link rel="icon" href="/favicon.png"> 
 
 </head>
 <style>
@@ -20,7 +21,7 @@
     }
 </style>
 <body>
-    <audio id="backgroundMusic" src="./public/bgMusic.mp3" autoplay loop></audio>
+    <audio id="backgroundMusic" src="/bgMusic.mp3" autoplay loop></audio>
 
     <div style="position: relative; display: inline-block;">
 
@@ -177,7 +178,7 @@
             <div id="touchControls" style="display: flex;width: 100%; height: 100%;">
                 <!-- hit -->
                 <div id="hitButtonContainer" style="padding-top: 60px; display: flex; opacity: .7; width: 100%; height: 100%; justify-content: center; align-items: center;">
-                     <img id="hitButton"  style="position: absolute; left: 40px; bottom: 100px; display: none;" id="attackBtnImg" width="110px" height="110px" src="./public/attackButton.svg" alt="">
+                     <img id="hitButton"  style="position: absolute; left: 40px; bottom: 100px; display: none;" id="attackBtnImg" width="110px" height="110px" src="/attackButton.svg" alt="">
                 </div>
                 <!-- auto hit -->
                 <div class="autoAttack" style="position: absolute; left: 10px; bottom: 80px; opacity: .5; width: 40px; height: 40px; border: 5px solid #545454; border-radius: 70%;">
@@ -202,5 +203,5 @@
 
     </div>
 </body>
-    <script type="module" src="./src/script.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </html>

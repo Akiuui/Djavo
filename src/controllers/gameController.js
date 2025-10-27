@@ -1,9 +1,9 @@
 import { NumberOfDefined, RandFromInterval, RandPositionOutsideBox } from "../utils/utils.js"
 import { enemySettings } from "../utils/entitySettings.js"
 import Enemy from "../models/Enemy.js"
-import { canvas } from "../script.js"
+import { canvas } from "../main.js"
 // import { canvas } from "../utils/canvas.js"
-import { gameState } from "../script.js"
+import { gameState } from "../main.js"
 
 //Enemies that can be spawned
 // let gameState.namesOfEnemies = ["hound", "fireskull"]

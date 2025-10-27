@@ -1,6 +1,6 @@
 import { StartTimerFrom } from "../utils/utils.js"
-import { gameState } from "../script.js"
-import { player } from "../script.js"
+import { gameState } from "../main.js"
+import { player } from "../main.js"
 
 export function StartGame() {
     document.getElementById("menu").style.display = "none"

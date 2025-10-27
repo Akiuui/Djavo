@@ -1,4 +1,4 @@
-import { c } from "../script.js"
+import { c } from "../main.js"
 
 class Sprite {
     constructor({
@@ -31,6 +31,7 @@ class Sprite {
         //Other
         this.type
         this.smallElements = smallElements
+        
         switch (type) {
             case "hound":
                 this.flipCords = -1

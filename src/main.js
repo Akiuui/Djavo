@@ -1,7 +1,6 @@
 import Player from "./models/Player.js"
 import Sprite from "./models/Sprite.js"
 
-
 import { StartGame, ShowLeaderboard, SaveScore, RestartGame, selectedUpgrade, muteMusic, OpenSaveScore, ExitSaveScore } from "./controllers/menuController.js"
 import { playerSettings, backgroundSettings } from "./utils/entitySettings.js"
 import gameController from "./controllers/gameController.js"

@@ -1,4 +1,4 @@
-import { gameState } from "../script.js";
+import { gameState } from "../main.js";
 
 export function detectCollision({ rect1, rect2 }) {
     return (

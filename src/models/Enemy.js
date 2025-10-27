@@ -1,7 +1,7 @@
 import Fighter from "./Fighter.js";
 import { detectCollision } from "../utils/utils.js";
-import { gameState } from "../script.js";
-import { c } from "../script.js";
+import { gameState } from "../main.js";
+import { c } from "../main.js";
 // import { c } from "../utils/canvas.js";
 import Collect from "./Collect.js";
 import { coinSettings, hearthSettings } from "../utils/entitySettings.js";

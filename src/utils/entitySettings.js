@@ -1,10 +1,10 @@
 const decreaseSize = 1
-import { canvas } from "../script.js"
+import { canvas } from "../main.js"
 
 export let coinSettings = {
     //Position is relative to the enemy
     // scale: 0.7,
-    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/sprites/collectibles/coin.png" },
+    sprite: { framesMax: 5, framesHold: 7, imageSrc: "/sprites/collectibles/coin.png" },
     hitbox: { w: 10, h: 10 },
     attackBox: {
         offset: { x: 0, y: 0 },
@@ -16,7 +16,7 @@ export let coinSettings = {
 export let hearthSettings = {
     //Position is relative to the enemy
     scale: 1.5,
-    sprite: { framesMax: 5, framesHold: 7, imageSrc: "./public/sprites/collectibles/heart.png" },
+    sprite: { framesMax: 5, framesHold: 7, imageSrc: "/sprites/collectibles/heart.png" },
     hitbox: { w: 10, h: 10 },
     attackBox: {
         offset: { x: 0, y: -20 },
@@ -29,7 +29,7 @@ export let backgroundSettings = {
     // overrideWidth: canvas.width,
     // overrideHeight: canvas.height,
     position: { x: 0, y: 0 },
-    sprite: { framesMax: 1, framesHold: 1, imageSrc: "./public/map.png" }
+    sprite: { framesMax: 1, framesHold: 1, imageSrc: "/map.png" }
 }
 export let playerSettings = {
     // position: { x: canvas.width, y: canvas.height }, //Should be center based on the canvas width and height
@@ -46,17 +46,17 @@ export let playerSettings = {
         idle: {
             framesMax: 4,
             framesHold: 7,
-            imageSrc: "./public/sprites/player/idle.png"
+            imageSrc: "/sprites/player/idle.png"
         },
         run: {
             framesMax: 12,
             framesHold: 6,
-            imageSrc: "./public/sprites/player/run.png"
+            imageSrc: "/sprites/player/run.png"
         },
         attack: {
             framesMax: 4,
             framesHold: 7,
-            imageSrc: "./public/sprites/player/attack.png"
+            imageSrc: "/sprites/player/attack.png"
         }
     },
     type: "player",
