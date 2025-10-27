@@ -50,9 +50,11 @@ Enemies spawn infinitely and get stronger over time. You attack nearby enemies â
    git clone https://github.com/Akiuui/Djavo.git
 
 2. Navigate to the repository
+   ```bash
    cd Djavo
 
 3. Run the build command
+   ```bash
    npm run dev
    
 ![Gameplay Screenshot]()
