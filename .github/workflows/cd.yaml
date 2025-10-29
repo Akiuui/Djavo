@@ -3,47 +3,39 @@ name: CD / Deploy to Itch.io
 on:
   push:
     branches: [ master ]
-  
   workflow_dispatch:
 
 jobs:
-  deploy-itchio:
-    # This job will only run if the previous 'build-and-check' job (if you have one) passed.
-    # We will assume a fresh build for simplicity here, but a real project might 
-    # use artifacts from the CI job.
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout repository
+      - name: 🧾 Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        # Install dependencies required for the build step
-        run: npm install
+      - name: 📦 Install dependencies
+        run: npm ci
 
-      - name: Run Production Build
-        # Re-run the build to ensure the 'dist' folder is current and ready for deployment
+      - name: 🏗️ Build project
         run: npm run build
-        
-      - name: 🚀 Deploy to itch.io via Butler
-        uses: manleydev/butler-publish-itchio-action@v1.0.3 
-        with:
-          # REQUIRED: The secret API key
-          butler_api_key: ${{ secrets.BUTLER_API_KEY }} 
-          
-          # REQUIRED: Replace with your actual username
-          itch_user: Akiuui
-          
-          # REQUIRED: Replace with your game's slug/name
-          itch_game: Djavo 
-          
-          # REQUIRED: The channel name for your Vite web game
-          channel: html5 
-          
-          # REQUIRED: The path to your built game files
-          package: dist
+
+      - name: 📂 Verify dist folder exists
+        run: ls -la dist
+
+      - name: 🧰 Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          sudo mv butler /usr/local/bin/butler
+
+      - name: 🚀 Deploy to Itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          butler push dist Akiuui/Djavo:html5 --userversion "$(date +'%Y.%m.%d-%H%M')"
