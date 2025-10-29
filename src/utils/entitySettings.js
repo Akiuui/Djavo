@@ -83,7 +83,7 @@ export let enemySettings = {
       idle: {
         framesMax: 7,
         framesHold: 4,
-        imageSrc: "./public/sprites/enemies/ghost/idle.png",
+        imageSrc: "/sprites/enemies/ghost/idle.png",
       },
     },
     imgOffset: { x: 25, y: 28 },
@@ -107,7 +107,7 @@ export let enemySettings = {
       idle: {
         framesMax: 6,
         framesHold: 6,
-        imageSrc: "./public/sprites/enemies/beast/idle.png",
+        imageSrc: "/sprites/enemies/beast/idle.png",
       },
     },
     imgOffset: { x: 5, y: 20 },
@@ -131,7 +131,7 @@ export let enemySettings = {
       idle: {
         framesMax: 8,
         framesHold: 6,
-        imageSrc: "./public/sprites/enemies/fireskull/idle.png",
+        imageSrc: "/sprites/enemies/fireskull/idle.png",
       },
     },
     imgOffset: { x: 5, y: 15 },
@@ -155,7 +155,7 @@ export let enemySettings = {
       idle: {
         framesMax: 12,
         framesHold: 6,
-        imageSrc: "./public/sprites/enemies/hound/idle.png",
+        imageSrc: "/sprites/enemies/hound/idle.png",
       },
     },
     imgOffset: { x: 15, y: 8 },
@@ -179,7 +179,7 @@ export let enemySettings = {
       idle: {
         framesMax: 4,
         framesHold: 6,
-        imageSrc: "./public/sprites/enemies/nightmare/idle.png",
+        imageSrc: "/sprites/enemies/nightmare/idle.png",
       },
     },
     imgOffset: { x: 50, y: 25 },
@@ -203,7 +203,7 @@ export let enemySettings = {
       idle: {
         framesMax: 6,
         framesHold: 6,
-        imageSrc: "./public/sprites/enemies/demon/idle.png",
+        imageSrc: "/sprites/enemies/demon/idle.png",
       },
     },
     imgOffset: { x: 55, y: 35 },
