@@ -91,7 +91,7 @@ class Fighter extends Sprite {
       }
     });
   }
-  drawA() {
+  drawHitbox() {
     c.strokeStyle = "white";
     c.strokeRect(
       this.position.x,
@@ -101,7 +101,8 @@ class Fighter extends Sprite {
     );
   }
   update(enemiesToHandle) {
-    this.drawA();
+    if(false)
+      this.drawHitbox();
     this.draw();
     this.animateFrames();
     this.autoFlipSprite();

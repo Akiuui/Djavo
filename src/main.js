@@ -11,7 +11,7 @@ import {
   OpenSaveScore,
   ExitSaveScore,
 } from "./controllers/menuController.js";
-import { playerSettings, backgroundSettings } from "./utils/entitySettings.js";
+import { playerSettings, backgroundSettings, coinSettings } from "./utils/entitySettings.js";
 import gameController from "./controllers/gameController.js";
 import { keys } from "./controllers/keyboardController.js";
 import touchScreenController from "./controllers/touchscreenController.js";
@@ -68,15 +68,19 @@ let fps = 0;
 let lastTime = 0;
 
 function Animate(timestamp) {
-  // Calculate frames per second
-  frameCount++;
-  if (timestamp - lastTime >= 1000) {
-    fps = frameCount;
-    frameCount = 0;
-    lastTime = timestamp;
 
-    // Display the FPS in the HTML element
-    // document.getElementById('fpsCounter').innerText = `FPS: ${fps}`;
+  //Shows a fps meter
+  if (import.meta.env.DEV) {
+    // Calculate frames per second
+    frameCount++;
+    if (timestamp - lastTime >= 1000) {
+      fps = frameCount;
+      frameCount = 0;
+      lastTime = timestamp;
+
+      // Display the FPS in the HTML element
+      document.getElementById('fpsCounter').innerText = `FPS: ${fps}`;
+    }
   }
 
   window.requestAnimationFrame(Animate); //Creates a recursive loop
@@ -87,6 +91,7 @@ function Animate(timestamp) {
   }
 
   if (!player.alive) {
+    
     document.getElementById("death").style.display = "flex";
     let score =
       gameState.seconds * 5 +

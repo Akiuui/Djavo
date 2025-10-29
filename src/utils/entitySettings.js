@@ -37,7 +37,7 @@ export let backgroundSettings = {
   // overrideWidth: canvas.width,
   // overrideHeight: canvas.height,
   position: { x: 0, y: 0 },
-  sprite: { framesMax: 1, framesHold: 1, imageSrc: "/map.png" },
+  sprite: { framesMax: 1, framesHold: 1, imageSrc: "/images/map.png" },
 };
 export let playerSettings = {
   // position: { x: canvas.width, y: canvas.height }, //Should be center based on the canvas width and height
