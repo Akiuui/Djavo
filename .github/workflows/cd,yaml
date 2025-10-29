@@ -1,0 +1,51 @@
+name: CD / Deploy to Itch.io
+
+on:
+  push:
+    branches: [ main ]
+  
+  workflow_dispatch:
+
+jobs:
+  deploy-itchio:
+    # This job will only run if the previous 'build-and-check' job (if you have one) passed.
+    # We will assume a fresh build for simplicity here, but a real project might 
+    # use artifacts from the CI job.
+    runs-on: ubuntu-latest
+    
+    environment: production # Good practice to use a protected environment for production secrets
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        # Install dependencies required for the build step
+        run: npm install
+
+      - name: Run Production Build
+        # Re-run the build to ensure the 'dist' folder is current and ready for deployment
+        run: npm run build
+        
+      - name: 🚀 Deploy to itch.io via Butler
+        uses: manleydev/butler-publish-itchio-action@v1.0.3 
+        with:
+          # REQUIRED: The secret API key
+          butler_api_key: ${{ secrets.BUTLER_API_KEY }} 
+          
+          # REQUIRED: Replace with your actual username
+          itch_user: Akiuui
+          
+          # REQUIRED: Replace with your game's slug/name
+          itch_game: Djavo 
+          
+          # REQUIRED: The channel name for your Vite web game
+          channel: html5 
+          
+          # REQUIRED: The path to your built game files
+          package: dist
