@@ -2,7 +2,7 @@ name: CD / Deploy to Itch.io
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   
   workflow_dispatch:
 
@@ -13,8 +13,6 @@ jobs:
     # use artifacts from the CI job.
     runs-on: ubuntu-latest
     
-    environment: production # Good practice to use a protected environment for production secrets
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
