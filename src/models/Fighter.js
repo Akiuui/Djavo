@@ -101,8 +101,7 @@ class Fighter extends Sprite {
     );
   }
   update(enemiesToHandle) {
-    if(false)
-      this.drawHitbox();
+    if (false) this.drawHitbox();
     this.draw();
     this.animateFrames();
     this.autoFlipSprite();

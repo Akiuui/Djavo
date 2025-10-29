@@ -11,7 +11,11 @@ import {
   OpenSaveScore,
   ExitSaveScore,
 } from "./controllers/menuController.js";
-import { playerSettings, backgroundSettings, coinSettings } from "./utils/entitySettings.js";
+import {
+  playerSettings,
+  backgroundSettings,
+  coinSettings,
+} from "./utils/entitySettings.js";
 import gameController from "./controllers/gameController.js";
 import { keys } from "./controllers/keyboardController.js";
 import touchScreenController from "./controllers/touchscreenController.js";
@@ -68,7 +72,6 @@ let fps = 0;
 let lastTime = 0;
 
 function Animate(timestamp) {
-
   //Shows a fps meter
   if (import.meta.env.DEV) {
     // Calculate frames per second
@@ -79,7 +82,7 @@ function Animate(timestamp) {
       lastTime = timestamp;
 
       // Display the FPS in the HTML element
-      document.getElementById('fpsCounter').innerText = `FPS: ${fps}`;
+      document.getElementById("fpsCounter").innerText = `FPS: ${fps}`;
     }
   }
 
@@ -91,7 +94,6 @@ function Animate(timestamp) {
   }
 
   if (!player.alive) {
-    
     document.getElementById("death").style.display = "flex";
     let score =
       gameState.seconds * 5 +
